@@ -20,21 +20,7 @@ namespace Tests
 
             // Create schema for tests
             // If you want to run tests against your database, you should execute your migrations or creation script here
-            using (var conn = database.Open())
-            using (var cmd = conn.CreateCommand())
-            {
-                cmd.CommandText = @"
-CREATE TABLE [dbo].[Person](
-	[PersonID] [int] IDENTITY(1,1) NOT NULL,
-	[FirstName] [varchar](100) NOT NULL,
-	[LastName] [varchar](100) NOT NULL,
- CONSTRAINT [PK_PersonID] PRIMARY KEY CLUSTERED 
-(
-	[PersonID] ASC
-) ON [PRIMARY],
-) ON [PRIMARY]";
-                cmd.ExecuteNonQuery();
-            }
+            SchemaHelper.MigrateToCurrentSchema(database);
         }
 
         [ClassCleanup]
@@ -57,6 +43,7 @@ CREATE TABLE [dbo].[Person](
 
             DatabaseService db = new DatabaseService(database.ConnectionString);
 
+            // With a shared database, you can use transaction scopes and not commit the changes so that unit tests don't interfere with each other.
             using (TransactionScope trans = new TransactionScope())
             {
                 db.Insert(firstName, lastName);
@@ -75,6 +62,7 @@ CREATE TABLE [dbo].[Person](
 
             DatabaseService db = new DatabaseService(database.ConnectionString);
 
+            // With a shared database, you can use transaction scopes and not commit the changes so that unit tests don't interfere with each other.
             using (TransactionScope trans = new TransactionScope())
             {
                 db.Insert(firstName, lastName);
