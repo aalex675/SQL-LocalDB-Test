@@ -9,6 +9,7 @@
     <description>Utility library to simplify unit tests that must use a database by using MS SQL LocalDB to simulate the real database.</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2015</copyright>
+    <projectUrl>https://github.com/aalex675/SQL-LocalDB-Test</projectUrl>
     <tags>MSSQL SQL LocalDB Test Testing</tags>
   </metadata>
   <files>
