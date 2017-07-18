@@ -103,14 +103,17 @@ END",
                 cmd.CommandText = string.Format(
                     @"
 DECLARE @FILENAME as varchar(255)
+DECLARE @LOGFILENAME as varchar(255)
 
 SET @FILENAME = CONVERT(VARCHAR(255), SERVERPROPERTY('instancedefaultdatapath')) + '{0}';
+SET @LOGFILENAME = CONVERT(VARCHAR(255), SERVERPROPERTY('instancedefaultdatapath')) + '{0}.log';
 
-EXEC ('CREATE DATABASE [{0}] ON PRIMARY
-    (NAME = [{0}],
-    FILENAME = ''' + @FILENAME + ''' )')",
+EXEC ('CREATE DATABASE [{0}]
+        ON PRIMARY (NAME = [{0}], FILENAME = ''' + @FILENAME + ''' )
+        LOG ON (NAME = [Log], FILENAME = ''' + @LOGFILENAME + ''' )
+            ')",
                     this.databaseName);
-
+                
                 cmd.ExecuteNonQuery();
             }
 
