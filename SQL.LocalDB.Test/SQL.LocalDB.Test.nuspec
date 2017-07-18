@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>SQL.LocalDB.Test</id>
-    <version>1.1</version>
+    <version>1.1.1</version>
     <authors>Alden Alexander</authors>
     <owners>Alden Alexander</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
