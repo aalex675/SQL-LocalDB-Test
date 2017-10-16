@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
 namespace SQL.LocalDB.Test
 {
@@ -16,14 +13,17 @@ namespace SQL.LocalDB.Test
         /// The name of the database represented by this instance of <see cref="LocalDb"/>.
         /// </summary>
         private string databaseName;
+        private string dataSource;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalDb"/> class.
         /// </summary>
         /// <param name="databaseName">The name of the SQL LocalDB database.</param>
-        public LocalDb(string databaseName)
+        /// <param name="dataSource">The name of the SQL LocalDB instance to use.</param>
+        public LocalDb(string databaseName, string dataSource)
         {
             this.databaseName = databaseName;
+            this.dataSource = dataSource;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace SQL.LocalDB.Test
         {
             get
             {
-                return this.BuildConnectionString(this.databaseName);
+                return this.BuildConnectionString(this.databaseName, this.dataSource);
             }
         }
 
@@ -55,7 +55,7 @@ namespace SQL.LocalDB.Test
         /// <returns>An open connection to the SQL LocalDB master database.</returns>
         public virtual SqlConnection OpenMaster()
         {
-            SqlConnection conn = new SqlConnection(this.BuildConnectionString(null));
+            SqlConnection conn = new SqlConnection(this.BuildConnectionString(null, this.dataSource));
             conn.Open();
 
             return conn;
@@ -113,7 +113,7 @@ EXEC ('CREATE DATABASE [{0}]
         LOG ON (NAME = [{0}_Log], FILENAME = ''' + @LOGFILENAME + ''' )
             ')",
                     this.databaseName);
-                
+
                 cmd.ExecuteNonQuery();
             }
 
@@ -127,7 +127,7 @@ EXEC ('CREATE DATABASE [{0}]
         public virtual void DeleteDatabase()
         {
             var sw = Stopwatch.StartNew();
-            
+
             using (var conn = this.OpenMaster())
             using (var cmd = conn.CreateCommand())
             {
@@ -153,11 +153,12 @@ END",
         /// Builds a connection string for the current database, or if a null or empty string is passed in, builds a connection string for the master database.
         /// </summary>
         /// <param name="databaseName">The name of the database to connect to. If null or empty string is provided, the connection string will connect to the master database.</param>
+        /// <param name="dataSource">The Sql Server instance to connect to.</param>
         /// <returns>A connection string</returns>
-        protected virtual string BuildConnectionString(string databaseName)
+        protected virtual string BuildConnectionString(string databaseName, string dataSource)
         {
             var sb = new SqlConnectionStringBuilder();
-            sb.DataSource = @"(localdb)\v11.0";
+            sb.DataSource = dataSource;
 
             if (string.IsNullOrWhiteSpace(databaseName) == false)
             {
