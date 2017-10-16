@@ -14,13 +14,13 @@ namespace SQL.LocalDB.Test
         /// </summary>
         private string databaseName;
         private string dataSource;
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalDb"/> class.
         /// </summary>
         /// <param name="databaseName">The name of the SQL LocalDB database.</param>
         /// <param name="dataSource">The name of the SQL LocalDB instance to use.</param>
-        public LocalDb(string databaseName, string dataSource)
+        public LocalDb(string databaseName, string dataSource = @"(localdb)\v11.0")
         {
             this.databaseName = databaseName;
             this.dataSource = dataSource;
@@ -55,7 +55,7 @@ namespace SQL.LocalDB.Test
         /// <returns>An open connection to the SQL LocalDB master database.</returns>
         public virtual SqlConnection OpenMaster()
         {
-            SqlConnection conn = new SqlConnection(this.BuildConnectionString(null, this.dataSource));
+            SqlConnection conn = new SqlConnection(this.BuildConnectionString("master", this.dataSource));
             conn.Open();
 
             return conn;
