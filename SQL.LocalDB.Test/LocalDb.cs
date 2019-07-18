@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.IO;
 
 namespace SQL.LocalDB.Test
 {
@@ -100,19 +101,21 @@ END",
             using (var conn = this.OpenMaster())
             using (var cmd = conn.CreateCommand())
             {
+                cmd.CommandText = "SELECT CONVERT(VARCHAR(255), SERVERPROPERTY('instancedefaultdatapath'))";
+                string defaultDataPath = (string)cmd.ExecuteScalar();
+                cmd.CommandText = "SELECT CONVERT(VARCHAR(255), SERVERPROPERTY('instancedefaultlogpath'))";
+                string defaultLogPath = (string)cmd.ExecuteScalar();
+
+                string filePath = Path.Combine(defaultDataPath, this.databaseName + ".mdf");
+                string logPath = Path.Combine(defaultLogPath, this.databaseName + "_log.ldf");
+
                 cmd.CommandText = string.Format(
-                    @"
-DECLARE @FILENAME as varchar(255)
-DECLARE @LOGFILENAME as varchar(255)
-
-SET @FILENAME = CONVERT(VARCHAR(255), SERVERPROPERTY('instancedefaultdatapath')) + '{0}';
-SET @LOGFILENAME = CONVERT(VARCHAR(255), SERVERPROPERTY('instancedefaultdatapath')) + '{0}.log';
-
-EXEC ('CREATE DATABASE [{0}]
-        ON PRIMARY (NAME = [{0}], FILENAME = ''' + @FILENAME + ''' )
-        LOG ON (NAME = [{0}_Log], FILENAME = ''' + @LOGFILENAME + ''' )
-            ')",
-                    this.databaseName);
+                    @"CREATE DATABASE [{0}]
+        ON PRIMARY (NAME = [{0}], FILENAME = '{1}' )
+        LOG ON (NAME = [{0}_Log], FILENAME = '{2}' )",
+                    this.databaseName,
+                    filePath,
+                    logPath);
 
                 cmd.ExecuteNonQuery();
             }
