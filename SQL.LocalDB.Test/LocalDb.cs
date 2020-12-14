@@ -71,6 +71,7 @@ namespace SQL.LocalDB.Test
             using (var conn = this.OpenMaster())
             using (var cmd = conn.CreateCommand())
             {
+                cmd.CommandTimeout = 5 * 60;
                 cmd.CommandText =
                     string.Format(
                         @"
@@ -101,6 +102,7 @@ END",
             using (var conn = this.OpenMaster())
             using (var cmd = conn.CreateCommand())
             {
+                cmd.CommandTimeout = 5 * 60;
                 cmd.CommandText = "SELECT CONVERT(VARCHAR(255), SERVERPROPERTY('instancedefaultdatapath'))";
                 string defaultDataPath = (string)cmd.ExecuteScalar();
                 cmd.CommandText = "SELECT CONVERT(VARCHAR(255), SERVERPROPERTY('instancedefaultlogpath'))";
@@ -134,6 +136,7 @@ END",
             using (var conn = this.OpenMaster())
             using (var cmd = conn.CreateCommand())
             {
+                cmd.CommandTimeout = 5 * 60;
                 cmd.CommandText = string.Format(
                     @"
 IF EXISTS(SELECT * FROM sys.databases WHERE name='{0}')
