@@ -70,6 +70,7 @@ namespace SQL.LocalDB.Test
             using (var conn = this.OpenMaster())
             using (var cmd = conn.CreateCommand())
             {
+                cmd.CommandTimeout = 5 * 60;
                 cmd.CommandText =
                     string.Format(
                         @"
@@ -100,6 +101,7 @@ END",
             using (var conn = this.OpenMaster())
             using (var cmd = conn.CreateCommand())
             {
+                cmd.CommandTimeout = 5 * 60;
                 cmd.CommandText = string.Format(
                     @"
 DECLARE @FILENAME as varchar(255)
@@ -131,6 +133,7 @@ EXEC ('CREATE DATABASE [{0}]
             using (var conn = this.OpenMaster())
             using (var cmd = conn.CreateCommand())
             {
+                cmd.CommandTimeout = 5 * 60;
                 cmd.CommandText = string.Format(
                     @"
 IF EXISTS(SELECT * FROM sys.databases WHERE name='{0}')

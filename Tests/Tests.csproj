@@ -56,11 +56,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DatabaseService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemaHelper.cs" />
     <Compile Include="Shared_Database.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestTableValue.cs" />
     <Compile Include="SimpleExample.cs" />
+    <Compile Include="TestTableValue.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SQL.LocalDB.Test\SQL.LocalDB.Test.csproj">
