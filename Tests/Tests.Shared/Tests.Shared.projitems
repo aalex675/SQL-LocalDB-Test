@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>74c50bcb-eada-4038-bcb3-68f9e656afec</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Tests.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DatabaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SchemaHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shared_Database.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SimpleExample.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestTableValue.cs" />
+  </ItemGroup>
+</Project>

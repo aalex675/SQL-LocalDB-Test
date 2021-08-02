@@ -55,19 +55,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DatabaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SchemaHelper.cs" />
-    <Compile Include="Shared_Database.cs" />
-    <Compile Include="SimpleExample.cs" />
-    <Compile Include="TestTableValue.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SQL.LocalDB.Test\SQL.LocalDB.Test.csproj">
-      <Project>{3731c684-656b-41e2-a625-bfef19bbd8d0}</Project>
+    <ProjectReference Include="..\..\SQL.LocalDB.Test\SQL.LocalDB.Test.csproj">
+      <Project>{88b18d83-19c8-4859-b478-5dae6f9cf814}</Project>
       <Name>SQL.LocalDB.Test</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\Tests.Shared\Tests.Shared.projitems" Label="Shared" />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

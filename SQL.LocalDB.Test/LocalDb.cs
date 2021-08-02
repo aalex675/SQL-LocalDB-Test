@@ -20,7 +20,7 @@ namespace SQL.LocalDB.Test
         /// </summary>
         /// <param name="databaseName">The name of the SQL LocalDB database.</param>
         /// <param name="dataSource">The name of the SQL LocalDB instance to use.</param>
-        public LocalDb(string databaseName, string dataSource = @"(localdb)\v11.0")
+        public LocalDb(string databaseName, string dataSource = @"(localdb)\MSSQLLocalDB")
         {
             this.databaseName = databaseName;
             this.dataSource = dataSource;

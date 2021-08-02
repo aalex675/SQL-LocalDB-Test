@@ -1,26 +1,51 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQL.LocalDB.Test", "SQL.LocalDB.Test\SQL.LocalDB.Test.csproj", "{3731C684-656B-41E2-A625-BFEF19BBD8D0}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkTests", "Tests\FrameworkTests\FrameworkTests.csproj", "{1E5E05E7-6509-4CE5-A28A-B8CDE78D76BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{1E5E05E7-6509-4CE5-A28A-B8CDE78D76BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQL.LocalDB.Test", "SQL.LocalDB.Test\SQL.LocalDB.Test.csproj", "{88B18D83-19C8-4859-B478-5DAE6F9CF814}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Tests.Shared", "Tests\Tests.Shared\Tests.Shared.shproj", "{74C50BCB-EADA-4038-BCB3-68F9E656AFEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BB4EE792-D0D7-440D-BADF-94388CD910CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreTests", "Tests\CoreTests\CoreTests.csproj", "{73925B73-BB82-48E4-B257-CD5CC1CFF32D}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Tests\Tests.Shared\Tests.Shared.projitems*{1e5e05e7-6509-4ce5-a28a-b8cde78d76bb}*SharedItemsImports = 4
+		Tests\Tests.Shared\Tests.Shared.projitems*{73925b73-bb82-48e4-b257-cd5cc1cff32d}*SharedItemsImports = 5
+		Tests\Tests.Shared\Tests.Shared.projitems*{74c50bcb-eada-4038-bcb3-68f9e656afec}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3731C684-656B-41E2-A625-BFEF19BBD8D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3731C684-656B-41E2-A625-BFEF19BBD8D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3731C684-656B-41E2-A625-BFEF19BBD8D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3731C684-656B-41E2-A625-BFEF19BBD8D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E5E05E7-6509-4CE5-A28A-B8CDE78D76BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E5E05E7-6509-4CE5-A28A-B8CDE78D76BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E5E05E7-6509-4CE5-A28A-B8CDE78D76BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E5E05E7-6509-4CE5-A28A-B8CDE78D76BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88B18D83-19C8-4859-B478-5DAE6F9CF814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B18D83-19C8-4859-B478-5DAE6F9CF814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88B18D83-19C8-4859-B478-5DAE6F9CF814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88B18D83-19C8-4859-B478-5DAE6F9CF814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73925B73-BB82-48E4-B257-CD5CC1CFF32D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73925B73-BB82-48E4-B257-CD5CC1CFF32D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73925B73-BB82-48E4-B257-CD5CC1CFF32D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73925B73-BB82-48E4-B257-CD5CC1CFF32D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1E5E05E7-6509-4CE5-A28A-B8CDE78D76BB} = {BB4EE792-D0D7-440D-BADF-94388CD910CB}
+		{74C50BCB-EADA-4038-BCB3-68F9E656AFEC} = {BB4EE792-D0D7-440D-BADF-94388CD910CB}
+		{73925B73-BB82-48E4-B257-CD5CC1CFF32D} = {BB4EE792-D0D7-440D-BADF-94388CD910CB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17F4489E-7E13-4864-A7FD-64F056692421}
 	EndGlobalSection
 EndGlobal
