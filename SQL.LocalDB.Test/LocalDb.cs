@@ -162,6 +162,7 @@ END",
         {
             var sb = new SqlConnectionStringBuilder();
             sb.DataSource = dataSource;
+            sb.ConnectTimeout = 5 * 60;
 
             if (string.IsNullOrWhiteSpace(databaseName) == false)
             {
